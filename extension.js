@@ -36,7 +36,18 @@ function activate(context) {
         const selection = editor.selection;
         const text = editor.document.getText(selection);
 
-        insertText(`console.log('${text}', ${text});`);
+        vscode.commands.executeCommand('editor.action.insertLineAfter')
+            .then(() => {
+                const logToInsert = `console.log('${text}', ${text});`;
+                insertText(logToInsert);
+            })
+
+        // editor.action.insertLineAfter;
+        // const logToInsert = `console.log('${text}', ${text});`;
+        // insertText(logToInsert);
+
+        // insertText(`${text} \nconsole.log('${text}', ${text});`);
+        // insertText(`console.log('${text}', ${text});`);
     });
 
     context.subscriptions.push(consoleLogVariable);
