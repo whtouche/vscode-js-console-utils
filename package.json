@@ -11,15 +11,11 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.sayHello",
         "onCommand:extension.insertLogStatement"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [{
-            "command": "extension.sayHello",
-            "title": "Hello World"
-        }, {
             "command": "extension.insertLogStatement",
             "title": "Insert Log Statement for Variable"
         }]
