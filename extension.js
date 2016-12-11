@@ -27,7 +27,16 @@ function activate(context) {
 
     const consoleLogVariable = vscode.commands.registerCommand('extension.insertLogStatement', () => {
         // Console.log selected variable
-        insertText('console.log();');
+
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) {
+            return; // No open text editor
+        }
+
+        const selection = editor.selection;
+        const text = editor.document.getText(selection);
+
+        insertText(`console.log('${text}', ${text});`);
     });
 
     context.subscriptions.push(consoleLogVariable);
