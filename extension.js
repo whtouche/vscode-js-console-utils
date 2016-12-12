@@ -26,28 +26,40 @@ function activate(context) {
     console.log('Congratulations, your extension "console-log-utils" is now active!');
 
     const consoleLogVariable = vscode.commands.registerCommand('extension.insertLogStatement', () => {
-        // Console.log selected variable
-
         const editor = vscode.window.activeTextEditor;
-        if (!editor) {
-            return; // No open text editor
-        }
+        if (!editor) { return; }
+
+        const selection = editor.selection;
+        console.log('editor.selection: ', editor.selection);
+        const text = editor.document.getText(selection);
+
+        vscode.commands.executeCommand('editor.action.insertLineAfter')
+            .then(() => {
+                const logToInsert = `console.log('${text}: ', ${text});`;
+                insertText(logToInsert);
+            })
+    });
+    context.subscriptions.push(consoleLogVariable);
+
+    const deleteAllConsoleLogs = vscode.commands.registerCommand('extension.deleteAllConsoleLogs', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor) { return; }
 
         const selection = editor.selection;
         const text = editor.document.getText(selection);
 
         vscode.commands.executeCommand('editor.action.insertLineAfter')
             .then(() => {
-                const logToInsert = `console.log('${text}', ${text});`;
+                const logToInsert = `console.log('${text}: ', ${text});`;
                 insertText(logToInsert);
             })
     });
-
-    context.subscriptions.push(consoleLogVariable);
+    context.subscriptions.push(deleteAllConsoleLogs);
 }
 exports.activate = activate;
 
 // this method is called when your extension is deactivated
 function deactivate() {
 }
+
 exports.deactivate = deactivate;
