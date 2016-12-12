@@ -41,13 +41,6 @@ function activate(context) {
                 const logToInsert = `console.log('${text}', ${text});`;
                 insertText(logToInsert);
             })
-
-        // editor.action.insertLineAfter;
-        // const logToInsert = `console.log('${text}', ${text});`;
-        // insertText(logToInsert);
-
-        // insertText(`${text} \nconsole.log('${text}', ${text});`);
-        // insertText(`console.log('${text}', ${text});`);
     });
 
     context.subscriptions.push(consoleLogVariable);
