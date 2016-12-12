@@ -21,7 +21,6 @@ const insertText = (val) => {
 // your extension is activated the very first time the command is executed
 function activate(context) {
 
-    // Use the console to output diagnostic information (console.log) and errors (console.error)
     // This line of code will only be executed once when your extension is activated
     console.log('Congratulations, your extension "console-log-utils" is now active!');
 
@@ -30,7 +29,6 @@ function activate(context) {
         if (!editor) { return; }
 
         const selection = editor.selection;
-        console.log('editor.selection: ', editor.selection);
         const text = editor.document.getText(selection);
 
         vscode.commands.executeCommand('editor.action.insertLineAfter')
@@ -44,9 +42,6 @@ function activate(context) {
     const deleteAllConsoleLogs = vscode.commands.registerCommand('extension.deleteAllConsoleLogs', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
-
-        const selection = editor.selection;
-        const text = editor.document.getText(selection);
 
         vscode.commands.executeCommand('editor.action.selectHighlights')
             .then(() => {
