@@ -11,13 +11,17 @@
         "Other"
     ],
     "activationEvents": [
-        "onCommand:extension.insertLogStatement"
+        "onCommand:extension.insertLogStatement",
+        "onCommand:extension.deleteAllConsoleLogs"
     ],
     "main": "./extension",
     "contributes": {
         "commands": [{
             "command": "extension.insertLogStatement",
             "title": "Insert Log Statement for Variable"
+        },{
+            "command": "extension.deleteAllConsoleLogs",
+            "title": "Delete all console.log statements"
         }]
     },
     "scripts": {

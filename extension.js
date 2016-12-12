@@ -48,10 +48,15 @@ function activate(context) {
         const selection = editor.selection;
         const text = editor.document.getText(selection);
 
-        vscode.commands.executeCommand('editor.action.insertLineAfter')
+        vscode.commands.executeCommand('editor.action.selectHighlights')
             .then(() => {
-                const logToInsert = `console.log('${text}: ', ${text});`;
-                insertText(logToInsert);
+                vscode.commands.executeCommand('expandLineSelection')
+                .then(() => {
+                    vscode.commands.executeCommand('editor.action.deleteLines')
+                    .then(() => {
+                        console.log('did this work?');
+                    })
+                })
             })
     });
     context.subscriptions.push(deleteAllConsoleLogs);
