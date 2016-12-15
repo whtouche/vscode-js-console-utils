@@ -17,6 +17,15 @@ const insertText = (val) => {
     });
 }
 
+function deleteAllLogStatements(workspaceEdit, docUri, logs) {
+    logs.forEach((log) => {
+        workspaceEdit.delete(docUri, log);
+    });
+    vscode.workspace.applyEdit(workspaceEdit).then(() => {
+        console.log('edited!');
+    });
+}
+
 // this method is called when your extension is activated
 // your extension is activated the very first time the command is executed
 function activate(context) {
@@ -43,16 +52,43 @@ function activate(context) {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
 
-        vscode.commands.executeCommand('editor.action.selectHighlights')
-            .then(() => {
-                vscode.commands.executeCommand('expandLineSelection')
-                .then(() => {
-                    vscode.commands.executeCommand('editor.action.deleteLines')
-                    .then(() => {
-                        console.log('did this work?');
-                    })
-                })
-            })
+        let logStatements = [];
+        let match;
+        const document = editor.document;
+        const documentText = editor.document.getText();
+        const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
+
+        while (match = logRegex.exec(documentText)) {
+            let matchRange =
+                new vscode.Range(
+                    document.positionAt(match.index),
+                    document.positionAt(match.index + match[0].length)
+                );
+
+            console.log('match.index', match.index);
+            console.log('match[0].length', match[0].length);
+
+            if (!matchRange.isEmpty)
+            logStatements.push(matchRange);
+        }
+
+
+        let workspaceEdit = new vscode.WorkspaceEdit();
+
+        deleteAllLogStatements(workspaceEdit, document.uri, logStatements);
+
+        // const logRegex = new RegExp("console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?");
+
+        // vscode.commands.executeCommand('editor.action.selectHighlights')
+        //     .then(() => {
+        //         vscode.commands.executeCommand('expandLineSelection')
+        //             .then(() => {
+        //                 vscode.commands.executeCommand('editor.action.deleteLines')
+        //                     .then(() => {
+        //                         console.log('did this work?');
+        //                     })
+        //             })
+        //     })
     });
     context.subscriptions.push(deleteAllConsoleLogs);
 }
