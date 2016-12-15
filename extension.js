@@ -17,7 +17,23 @@ const insertText = (val) => {
     });
 }
 
-function deleteAllLogStatements(workspaceEdit, docUri, logs) {
+function getAllLogStatements(document, documentText) {
+    let logStatements = [];
+    const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
+    let match;
+    while (match = logRegex.exec(documentText)) {
+        let matchRange =
+            new vscode.Range(
+                document.positionAt(match.index),
+                document.positionAt(match.index + match[0].length)
+            );
+        if (!matchRange.isEmpty)
+            logStatements.push(matchRange);
+    }
+    return logStatements;
+}
+
+function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     logs.forEach((log) => {
         workspaceEdit.delete(docUri, log);
     });
@@ -31,9 +47,9 @@ function deleteAllLogStatements(workspaceEdit, docUri, logs) {
 function activate(context) {
 
     // This line of code will only be executed once when your extension is activated
-    console.log('Congratulations, your extension "console-log-utils" is now active!');
+    console.log('console-log-utils is now active');
 
-    const consoleLogVariable = vscode.commands.registerCommand('extension.insertLogStatement', () => {
+    const insertLogStatement = vscode.commands.registerCommand('extension.insertLogStatement', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
 
@@ -46,51 +62,21 @@ function activate(context) {
                 insertText(logToInsert);
             })
     });
-    context.subscriptions.push(consoleLogVariable);
+    context.subscriptions.push(insertLogStatement);
 
-    const deleteAllConsoleLogs = vscode.commands.registerCommand('extension.deleteAllConsoleLogs', () => {
+    const deleteAllLogStatements = vscode.commands.registerCommand('extension.deleteAllLogStatements', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
-
-        let logStatements = [];
-        let match;
         const document = editor.document;
         const documentText = editor.document.getText();
-        const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
-
-        while (match = logRegex.exec(documentText)) {
-            let matchRange =
-                new vscode.Range(
-                    document.positionAt(match.index),
-                    document.positionAt(match.index + match[0].length)
-                );
-
-            console.log('match.index', match.index);
-            console.log('match[0].length', match[0].length);
-
-            if (!matchRange.isEmpty)
-            logStatements.push(matchRange);
-        }
-
 
         let workspaceEdit = new vscode.WorkspaceEdit();
 
-        deleteAllLogStatements(workspaceEdit, document.uri, logStatements);
+        const logStatements = getAllLogStatements(document, documentText);
 
-        // const logRegex = new RegExp("console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?");
-
-        // vscode.commands.executeCommand('editor.action.selectHighlights')
-        //     .then(() => {
-        //         vscode.commands.executeCommand('expandLineSelection')
-        //             .then(() => {
-        //                 vscode.commands.executeCommand('editor.action.deleteLines')
-        //                     .then(() => {
-        //                         console.log('did this work?');
-        //                     })
-        //             })
-        //     })
+        deleteFoundLogStatements(workspaceEdit, document.uri, logStatements);
     });
-    context.subscriptions.push(deleteAllConsoleLogs);
+    context.subscriptions.push(deleteAllLogStatements);
 }
 exports.activate = activate;
 
