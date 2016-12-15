@@ -42,10 +42,7 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     });
 }
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
 function activate(context) {
-
     // This line of code will only be executed once when your extension is activated
     console.log('console-log-utils is now active');
 
