@@ -64,6 +64,7 @@ function activate(context) {
     const deleteAllLogStatements = vscode.commands.registerCommand('extension.deleteAllLogStatements', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
+        
         const document = editor.document;
         const documentText = editor.document.getText();
 
