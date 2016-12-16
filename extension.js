@@ -52,11 +52,14 @@ function activate(context) {
         const selection = editor.selection;
         const text = editor.document.getText(selection);
 
-        vscode.commands.executeCommand('editor.action.insertLineAfter')
-            .then(() => {
-                const logToInsert = `console.log('${text}: ', ${text});`;
-                insertText(logToInsert);
-            })
+        text
+            ? vscode.commands.executeCommand('editor.action.insertLineAfter')
+                .then(() => {
+                    const logToInsert = `console.log('${text}: ', ${text});`;
+                    insertText(logToInsert);
+                })
+            : insertText('console.log();');
+
     });
     context.subscriptions.push(insertLogStatement);
 
