@@ -43,7 +43,6 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
 }
 
 function activate(context) {
-    // This line of code will only be executed once when your extension is activated
     console.log('console-log-utils is now active');
 
     const insertLogStatement = vscode.commands.registerCommand('extension.insertLogStatement', () => {
@@ -64,7 +63,7 @@ function activate(context) {
     const deleteAllLogStatements = vscode.commands.registerCommand('extension.deleteAllLogStatements', () => {
         const editor = vscode.window.activeTextEditor;
         if (!editor) { return; }
-        
+
         const document = editor.document;
         const documentText = editor.document.getText();
 
@@ -78,7 +77,6 @@ function activate(context) {
 }
 exports.activate = activate;
 
-// this method is called when your extension is deactivated
 function deactivate() {
 }
 
