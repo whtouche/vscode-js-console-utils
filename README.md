@@ -2,7 +2,7 @@
 
 Easily insert and remove console.log statements.
 
-[](https://i.imgur.com/0tiesd2.gifv)
+![](https://i.imgur.com/0tiesd2.gifv)
 
 ## Installing
 
