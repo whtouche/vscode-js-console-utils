@@ -2,6 +2,8 @@
 
 Easily insert and remove console.log statements.
 
+[](https://i.imgur.com/0tiesd2.gifv)
+
 ## Installing
 
 This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=whtouche.vscode-js-console-utils)
