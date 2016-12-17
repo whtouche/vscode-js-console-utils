@@ -2,7 +2,7 @@
     "name": "vscode-js-console-utils",
     "displayName": "javascript console utils",
     "description": "Help insert and remove console.(*) statements",
-    "version": "0.0.1",
+    "version": "0.1.0",
     "publisher": "whtouche",
     "repository": "https://github.com/whtouche/vscode-js-console-utils",
     "engines": {
@@ -17,23 +17,29 @@
     ],
     "main": "./extension",
     "contributes": {
-        "commands": [{
-            "command": "extension.insertLogStatement",
-            "title": "Insert Log Statement"
-        },{
-            "command": "extension.deleteAllLogStatements",
-            "title": "Delete all console.log statements"
-        }],
-        "keybindings": [{
-            "command": "extension.insertLogStatement",
-            "key": "shift+ctrl+l",
-            "mac": "shift+cmd+l",
-            "when": "editorTextFocus"
-        },{
-            "command": "extension.deleteAllLogStatements",
-            "key": "shift+ctrl+d",
-            "mac": "shift+cmd+d"
-        }]
+        "commands": [
+            {
+                "command": "extension.insertLogStatement",
+                "title": "Insert Log Statement"
+            },
+            {
+                "command": "extension.deleteAllLogStatements",
+                "title": "Delete all console.log statements"
+            }
+        ],
+        "keybindings": [
+            {
+                "command": "extension.insertLogStatement",
+                "key": "shift+ctrl+l",
+                "mac": "shift+cmd+l",
+                "when": "editorTextFocus"
+            },
+            {
+                "command": "extension.deleteAllLogStatements",
+                "key": "shift+ctrl+d",
+                "mac": "shift+cmd+d"
+            }
+        ]
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
