@@ -23,6 +23,11 @@ To remove console.logs:
 * Press Cmd+Shift+D
 * This will delete all console.log statements in the current document
 
+## To Do
+* Add support for other console.* methods (warn, error, time, timeEnd, etc)
+* Add ability to delete console.* across project (currently just the open file)
+* When deleting console.*, report how many were deleted, across how many files
+* Allow configuration to only delete certain types of console.* statements
 
 ## License
-[MIT License](LICENSE.md)
+[MIT License](LICENSE)
