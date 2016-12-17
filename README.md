@@ -1,65 +1,26 @@
-# console-log-utils README
+## js-console-utils
 
-This is the README for your extension "console-log-utils". After writing up a brief description, we recommend including the following sections.
+Easily insert and remove console.log statements.
 
-## Features
+## Installing
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=fabiodam.vscode-console-wrapper)
 
-For example if there is an image subfolder under your extension project workspace:
+## Usage
 
-\!\[feature X\]\(images/feature-x.png\)
+With selection:
+* Highlight a variable (or really any text)
+* Press Cmd+Shift+L
+* The output (on a new line) will be: console.log('variable: ', variable);
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+Without selection:
+* Press Cmd+Shift+L
+* The output (on the same line) will be: console.log();
 
-## Requirements
+To remove console.logs:
+* Press Cmd+Shift+D
+* This will delete all console.log statements in the current document
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
 
-## Extension Settings
-
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
-
-For example:
-
-This extension contributes the following settings:
-
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
-
-## Known Issues
-
-Calling out known issues can help limit users opening duplicate issues against your extension.
-
-## Release Notes
-
-Users appreciate release notes as you update your extension.
-
-### 1.0.0
-
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on OSX or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on OSX or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (OSX) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+## License
+[MIT License](https://raw.githubusercontent.com/akamud/vscode-caniuse/master/LICENSE)

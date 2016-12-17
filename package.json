@@ -18,7 +18,7 @@
     "contributes": {
         "commands": [{
             "command": "extension.insertLogStatement",
-            "title": "Insert Log Statement for Variable"
+            "title": "Insert Log Statement"
         },{
             "command": "extension.deleteAllLogStatements",
             "title": "Delete all console.log statements"
