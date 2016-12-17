@@ -1,6 +1,6 @@
 {
-    "name": "js-log-utils",
-    "displayName": "javascript log utils",
+    "name": "vscode-js-console-utils",
+    "displayName": "javascript console utils",
     "description": "Help insert and remove console.(*) statements",
     "version": "0.0.1",
     "publisher": "whtouche",
