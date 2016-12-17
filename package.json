@@ -4,6 +4,7 @@
     "description": "Help insert and remove console.(*) statements",
     "version": "0.0.1",
     "publisher": "whtouche",
+    "repository": "https://github.com/whtouche/vscode-js-console-utils",
     "engines": {
         "vscode": "^1.5.0"
     },

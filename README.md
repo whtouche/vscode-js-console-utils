@@ -4,7 +4,7 @@ Easily insert and remove console.log statements.
 
 ## Installing
 
-This extension is available for free in the [Visual Studio Code Marketplace]()
+This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=whtouche.vscode-js-console-utils)
 
 ## Usage
 
