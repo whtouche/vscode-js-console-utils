@@ -1,6 +1,6 @@
 ## vscode-js-console-utils
 
-Easily insert and remove console.log statements.
+Easily insert and remove console.log statements, by [@whtouche](https://twitter.com/whtouche)
 
 ![](https://i.imgur.com/0tiesd2.gif)
 
