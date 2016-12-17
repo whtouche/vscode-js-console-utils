@@ -1,10 +1,10 @@
-## js-console-utils
+## vscode-js-console-utils
 
 Easily insert and remove console.log statements.
 
 ## Installing
 
-This extension is available for free in the [Visual Studio Code Marketplace](https://marketplace.visualstudio.com/items?itemName=fabiodam.vscode-console-wrapper)
+This extension is available for free in the [Visual Studio Code Marketplace]()
 
 ## Usage
 
@@ -23,4 +23,4 @@ To remove console.logs:
 
 
 ## License
-[MIT License](https://raw.githubusercontent.com/akamud/vscode-caniuse/master/LICENSE)
+[MIT License](LICENSE.md)
