@@ -19,6 +19,7 @@ const insertText = (val) => {
 
 function getAllLogStatements(document, documentText) {
     let logStatements = [];
+
     const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
     let match;
     while (match = logRegex.exec(documentText)) {
@@ -37,8 +38,11 @@ function deleteFoundLogStatements(workspaceEdit, docUri, logs) {
     logs.forEach((log) => {
         workspaceEdit.delete(docUri, log);
     });
+
     vscode.workspace.applyEdit(workspaceEdit).then(() => {
-        console.log('edited!');
+        logs.length > 1
+            ? vscode.window.showInformationMessage(`${logs.length} console.logs deleted`)
+            : vscode.window.showInformationMessage(`${logs.length} console.log deleted`);
     });
 }
 
