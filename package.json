@@ -31,12 +31,16 @@
             {
                 "command": "extension.insertLogStatement",
                 "key": "shift+ctrl+l",
+                "linux": "shift+meta+l",
+                "win": "shift+win+l",
                 "mac": "shift+cmd+l",
                 "when": "editorTextFocus"
             },
             {
                 "command": "extension.deleteAllLogStatements",
                 "key": "shift+ctrl+d",
+                "linux": "shift+meta+d",
+                "win": "shift+win+d",
                 "mac": "shift+cmd+d"
             }
         ]
