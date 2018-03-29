@@ -55,6 +55,11 @@ function activate(context) {
 
         const selection = editor.selection;
         const text = editor.document.getText(selection);
+        const placeholder = "";
+        const cursorPlacement = () => {
+            vscode.commands.executeCommand('cursorMove',{to: 'wrappedLineEnd'});
+            vscode.commands.executeCommand('cursorMove',{to: 'left', by: 'character', value :2});
+        };
 
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
@@ -62,7 +67,14 @@ function activate(context) {
                     const logToInsert = `console.log('${text}: ', ${text});`;
                     insertText(logToInsert);
                 })
-            : insertText('console.log();');
+            : vscode.commands.executeCommand('editor.action.inserlineAfter')
+                .then(() =>{
+                    const emptyInsert = `console.log(${placeholder});`;
+                    insertText(emptyInsert);
+                })
+                .then(() => {
+                    cursorPlacement();
+                })
 
     });
     context.subscriptions.push(insertLogStatement);
