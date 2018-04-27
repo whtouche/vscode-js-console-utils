@@ -56,25 +56,22 @@ function activate(context) {
         const selection = editor.selection;
         const text = editor.document.getText(selection);
         const placeholder = "";
+        const emptyInsert = `console.log(${placeholder});`;
         const cursorPlacement = () => {
-            vscode.commands.executeCommand('cursorMove',{to: 'wrappedLineEnd'});
+            // release the selection caused by inserting
+            vscode.commands.executeCommand('cursorMove',{to: 'right', by:'character', value :1});
+            // position the cursor inside the parenthesis
             vscode.commands.executeCommand('cursorMove',{to: 'left', by: 'character', value :2});
         };
 
         text
-            ? vscode.commands.executeCommand('editor.action.insertLineAfter')
-                .then(() => {
-                    const logToInsert = `console.log('${text}: ', ${text});`;
-                    insertText(logToInsert);
-                })
-            : vscode.commands.executeCommand('editor.action.insertLineAfter')
-                .then(() => {
-                    const emptyInsert = `console.log(${placeholder});`;
-                    insertText(emptyInsert);
-                })
-                .then(() => {
-                    cursorPlacement();
-                })
+        ? vscode.commands.executeCommand('editor.action.insertLineAfter')
+        .then(() => {
+            const logToInsert = `console.log('${text}: ', ${text});`;
+            insertText(logToInsert);
+        })
+        : insertText(emptyInsert);
+          cursorPlacement();
 
     });
     context.subscriptions.push(insertLogStatement);
