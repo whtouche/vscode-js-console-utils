@@ -19,9 +19,7 @@ const insertText = (val) => {
 
 function getAllLogStatements(document, documentText) {
     let logStatements = [];
-    const prefix = vscode.workspace.getConfiguration('js-console-utils').prefix;
-    // const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
-    const logRegex = new RegExp(prefix + 'console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?', 'g');
+    const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
     let match;
     while (match = logRegex.exec(documentText)) {
         let matchRange =
@@ -61,7 +59,7 @@ function activate(context) {
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
-                    const logToInsert = `${prefix}console.log('${text}: ', ${text});`;
+                    const logToInsert = `console.log('${prefix}${text}: ', ${text});`;
                     insertText(logToInsert);
                 })
             : insertText('console.log();');
