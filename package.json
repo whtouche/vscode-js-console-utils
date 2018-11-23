@@ -17,6 +17,17 @@
     ],
     "main": "./extension",
     "contributes": {
+        "configuration": {
+            "type": "object",
+            "title": "Js console utils configuration",
+            "properties": {
+                "js-console-utils.prefix": {
+                    "type": "string",
+                    "default": "",
+                    "description": "Add prefix before the variable name when printed in console."
+                }
+            }
+        },
         "commands": [
             {
                 "command": "extension.insertLogStatement",
