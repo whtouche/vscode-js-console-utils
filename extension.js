@@ -55,7 +55,6 @@ function activate(context) {
         const selection = editor.selection;
         const text = editor.document.getText(selection);
         const prefix = vscode.workspace.getConfiguration('js-console-utils').prefix;
-        console.log('get prefix configuration of js-console-utils', prefix);
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
