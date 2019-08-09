@@ -20,7 +20,7 @@ const insertText = (val) => {
 function getAllLogStatements(document, documentText) {
     let logStatements = [];
 
-    const logRegex = /console.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\((.*)\);?/g;
+    const logRegex = /console\.(log|debug|info|warn|error|assert|dir|dirxml|trace|group|groupEnd|time|timeEnd|profile|profileEnd|count)\(([\s\S]*)\);?/g;
     let match;
     while (match = logRegex.exec(documentText)) {
         let matchRange =
