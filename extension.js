@@ -1,4 +1,5 @@
 const vscode = require('vscode');
+const endWithSemicolon = vscode.workspace.getConfiguration('ConsoleUtils', 'endWithSemicolon')
 
 const insertText = (val) => {
     const editor = vscode.window.activeTextEditor;
@@ -51,6 +52,8 @@ function activate(context) {
 
     const insertLogStatement = vscode.commands.registerCommand('extension.insertLogStatement', () => {
         const editor = vscode.window.activeTextEditor;
+        const endWithSemicolon = vscode.workspace.getConfiguration('consoleUtils').endWithSemicolon;
+
         if (!editor) { return; }
 
         const selection = editor.selection;
@@ -59,7 +62,7 @@ function activate(context) {
         text
             ? vscode.commands.executeCommand('editor.action.insertLineAfter')
                 .then(() => {
-                    const logToInsert = `console.log('${text}: ', ${text});`;
+                    const logToInsert = `console.log('${text}: ', ${text})${ endWithSemicolon ? ';' : '' }`;
                     insertText(logToInsert);
                 })
             : insertText('console.log();');
@@ -85,6 +88,7 @@ function activate(context) {
 exports.activate = activate;
 
 function deactivate() {
+
 }
 
 exports.deactivate = deactivate;

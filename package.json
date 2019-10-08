@@ -39,7 +39,17 @@
                 "key": "shift+ctrl+d",
                 "mac": "shift+cmd+d"
             }
-        ]
+        ],
+        "configuration": {
+            "title": "ConsoleUtils",
+            "properties": {
+                "consoleUtils.endWithSemicolon": {
+                    "type": "boolean",
+                    "default": true,
+                    "description": "Place a semicolon at the end of the console.log line."
+                }
+            }
+        }
     },
     "scripts": {
         "postinstall": "node ./node_modules/vscode/bin/install",
